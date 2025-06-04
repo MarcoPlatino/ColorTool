@@ -5,17 +5,23 @@ import java.io.*;
 import java.awt.event.*;
 import javax.swing.filechooser.*;
 import javax.swing.*;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class RGBconverterGUI extends JFrame implements ActionListener {
+	
+	class filechooser implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        int r = j.showOpenDialog(null);
+
+        if (r == JFileChooser.APPROVE_OPTION) {
+            Path = j.getSelectedFile().getAbsolutePath();
+			l.setText(Path);
+        } else {
+            l.setText("the user cancelled the operation");
+        }
+    }
+}
 
 	JFrame frame;
 	JPanel contentpane;
@@ -36,8 +42,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
 	static JLabel l;
 
-	void filechooser() {
-	}
+
 
 //	public static int Red;
 //	public static int Green;
@@ -220,7 +225,8 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		contentpane.add(open);
 
 		l = new JLabel("No file Selected you Bum");
-
+		contentpane.add(l);
+		
 		frame.setContentPane(contentpane);
 
 		frame.pack();
@@ -244,17 +250,6 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		BrightnessLabel.setText("Brightness: " + Hexadecimal(Red, Green, Blue, 2) + "%");
 		ASCIILabel.setText("ASCII code: " + Hexadecimal(Red, Green, Blue, 3));
 
-		if (eventName.equals("open")) {
-			JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-			int r = j.showSaveDialog(null);
-
-			if (r == JFileChooser.APPROVE_OPTION) {
-				l.setText(j.getSelectedFile().getAbsolutePath());
-				Path = j.getSelectedFile().getAbsolutePath();
-			} else {
-				l.setText("the user cancelled the operation");
-			}
-		}
 
 	}
 
