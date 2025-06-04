@@ -25,6 +25,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
 	JFrame frame;
 	JPanel contentpane;
+	JPanel imageUpload;
 
 	JLabel RedLabel;
 	JLabel GreenLabel;
@@ -174,6 +175,9 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		contentpane = new JPanel();
 		contentpane.setLayout(new GridLayout(4, 4));
 
+		imageUpload = new JPanel();
+		imageUpload.setLayout(new BoxLayout(imageUpload, BoxLayout.Y_AXIS));
+
 		RedLabel = new JLabel("Red value:");
 		GreenLabel = new JLabel("Green value:");
 		BlueLabel = new JLabel("Blue value:");
@@ -216,19 +220,30 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		ASCIILabel = new JLabel("");
 		contentpane.add(ASCIILabel);
 
+		// this is the part of the code where all the file selection stuff is set up!
+		// @TODO maybe all of the image analysis stuff can be added into a new class because it would make it MUCH simpler !!! 
+
 		JButton open = new JButton("open");
 
 		filechooser f1 = new filechooser();
 
 		open.addActionListener(f1);
+		open.setAlignmentX(CENTER_ALIGNMENT);
+		imageUpload.add(open);
 
-		contentpane.add(open);
+		imageUpload.add(Box.createVerticalGlue());
 
 		l = new JLabel("No file Selected you Bum");
-		contentpane.add(l);
+		l.setAlignmentX(CENTER_ALIGNMENT);
+		imageUpload.add(l);
 		
-		frame.setContentPane(contentpane);
+		JPanel mainPanel = new JPanel();
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		mainPanel.add(contentpane);
+		mainPanel.add(imageUpload);
 
+		frame.setContentPane(mainPanel);
+		
 		frame.pack();
 		frame.setVisible(true);
 
