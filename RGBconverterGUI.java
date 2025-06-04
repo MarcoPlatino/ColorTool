@@ -1,7 +1,10 @@
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.io.*;
+import java.awt.event.*;
+import javax.swing.filechooser.*;
+import javax.swing.*;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ComboBoxModel;
@@ -12,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class RGBconverterGUI implements ActionListener {
+public class RGBconverterGUI extends JFrame implements ActionListener {
 
 	JFrame frame;
 	JPanel contentpane;
@@ -31,9 +34,15 @@ public class RGBconverterGUI implements ActionListener {
 	JComboBox GreenInput;
 	JComboBox BlueInput;
 
+	static JLabel l;
+
+	void filechooser() {
+	}
+
 //	public static int Red;
 //	public static int Green;
 //	public static int Blue;
+	public String Path;
 
 	private static String Hexadecimal(int r, int g, int b, int output) {
 
@@ -168,8 +177,7 @@ public class RGBconverterGUI implements ActionListener {
 		contentpane.add(GreenLabel);
 		contentpane.add(BlueLabel);
 
-		String[] items = {"1", "2", "3" };
-		
+		String[] items = { "1", "2", "3" };
 
 		RedInput = new JComboBox(items);
 
@@ -203,6 +211,16 @@ public class RGBconverterGUI implements ActionListener {
 		ASCIILabel = new JLabel("");
 		contentpane.add(ASCIILabel);
 
+		JButton open = new JButton("open");
+
+		filechooser f1 = new filechooser();
+
+		open.addActionListener(f1);
+
+		contentpane.add(open);
+
+		l = new JLabel("No file Selected you Bum");
+
 		frame.setContentPane(contentpane);
 
 		frame.pack();
@@ -213,11 +231,11 @@ public class RGBconverterGUI implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		String eventName = event.getActionCommand();
-		
+
 		String redString = (String) RedInput.getSelectedItem();
 		String greenString = (String) GreenInput.getSelectedItem();
 		String blueString = (String) BlueInput.getSelectedItem();
-		
+
 		int Red = Integer.parseInt(redString);
 		int Green = Integer.parseInt(greenString);
 		int Blue = Integer.parseInt(blueString);
@@ -226,10 +244,22 @@ public class RGBconverterGUI implements ActionListener {
 		BrightnessLabel.setText("Brightness: " + Hexadecimal(Red, Green, Blue, 2) + "%");
 		ASCIILabel.setText("ASCII code: " + Hexadecimal(Red, Green, Blue, 3));
 
+		if (eventName.equals("open")) {
+			JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+			int r = j.showSaveDialog(null);
+
+			if (r == JFileChooser.APPROVE_OPTION) {
+				l.setText(j.getSelectedFile().getAbsolutePath());
+				Path = j.getSelectedFile().getAbsolutePath();
+			} else {
+				l.setText("the user cancelled the operation");
+			}
+		}
+
 	}
 
 	private static void runRGBconverterGUI() {
-		JFrame.setDefaultLookAndFeelDecorated(true);
+		JFrame.setDefaultLookAndFeelDecorated(false);
 		RGBconverterGUI run = new RGBconverterGUI();
 	}
 
