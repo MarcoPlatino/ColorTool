@@ -19,10 +19,12 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
             Path = j.getSelectedFile().getAbsolutePath();
 			l.setText(Path);
 			imageTools.getPixelColor(Path);
-			System.out.println(imageTools.a);
-			System.out.println(imageTools.r);
-			System.out.println(imageTools.g);
-			System.out.println(imageTools.b);
+			A.setText("Transparency: " + imageTools.a);
+			R.setText("Red: " + imageTools.r);
+			G.setText("Green: " + imageTools.g);			
+			B.setText("Blue: " + imageTools.b);			
+
+//			System.out.println(imageTools.b);
 //			System.out.println(imageTools.p);
         } else {
             l.setText("the user cancelled the operation");
@@ -40,6 +42,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	JLabel R;
 	JLabel G;
 	JLabel B;
+	JLabel A;
 
 	JLabel HexadecimalLabel;
 	JLabel BrightnessLabel;
@@ -196,7 +199,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		contentpane.add(GreenLabel);
 		contentpane.add(BlueLabel);
 
-		String[] items = { "0", "255"};
+		String[] items = { "0", "255};
 
 		RedInput = new JComboBox(items);
 
@@ -250,8 +253,13 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		R = new JLabel("nothing yet");
 		G = new JLabel("nothing yet");
 		B = new JLabel("nothing yet");
+		A = new JLabel("Nothing yet");
 		
-		
+		imageUpload.add(A);
+		imageUpload.add(R);
+		imageUpload.add(G);
+		imageUpload.add(B);
+
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -268,9 +276,8 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		String eventName = event.getActionCommand();
-		
-		if (eventName.equals("Convert")) {
-			String redString = (String) RedInput.getSelectedItem();
+
+		String redString = (String) RedInput.getSelectedItem();
 		String greenString = (String) GreenInput.getSelectedItem();
 		String blueString = (String) BlueInput.getSelectedItem();
 
@@ -281,8 +288,6 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		HexadecimalLabel.setText("Hexadecimal code: " + Hexadecimal(Red, Green, Blue, 1));
 		BrightnessLabel.setText("Brightness: " + Hexadecimal(Red, Green, Blue, 2) + "%");
 		ASCIILabel.setText("ASCII code: " + Hexadecimal(Red, Green, Blue, 3));
-		}
-		
 
 
 	}
