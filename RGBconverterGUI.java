@@ -1,4 +1,3 @@
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,6 +37,9 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	JLabel RedLabel;
 	JLabel GreenLabel;
 	JLabel BlueLabel;
+	JLabel R;
+	JLabel G;
+	JLabel B;
 
 	JLabel HexadecimalLabel;
 	JLabel BrightnessLabel;
@@ -194,7 +196,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		contentpane.add(GreenLabel);
 		contentpane.add(BlueLabel);
 
-		String[] items = { "0", "255"};
+		String[] items = { "1", "2", "3" };
 
 		RedInput = new JComboBox(items);
 
@@ -245,14 +247,18 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		l.setAlignmentX(CENTER_ALIGNMENT);
 		imageUpload.add(l);
 		
+		R = new JLabel("nothing yet");
+		G = new JLabel("nothing yet");
+		B = new JLabel("nothing yet");
+		
+		
+		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		mainPanel.add(contentpane);
 		mainPanel.add(imageUpload);
 
 		frame.setContentPane(mainPanel);
-		
-		contentpane.setPreferredSize(new Dimension(750, 100));
 		
 		frame.pack();
 		frame.setVisible(true);
