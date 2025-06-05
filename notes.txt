@@ -3,3 +3,6 @@ For the images stuff, check out photography histograms -- apparently they are ve
 
 Look at this link for getting color data:
 https://stackoverflow.com/questions/6444869/how-do-i-read-pixels-from-a-png-file
+
+Also this:
+https://www.geeksforgeeks.org/image-processing-in-java-get-and-set-pixels/
