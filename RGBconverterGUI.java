@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.filechooser.*;
 import javax.swing.*;
 
+
 public class RGBconverterGUI extends JFrame implements ActionListener {
 	
 	class filechooser implements ActionListener {
@@ -17,6 +18,12 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
         if (r == JFileChooser.APPROVE_OPTION) {
             Path = j.getSelectedFile().getAbsolutePath();
 			l.setText(Path);
+			imageTools.getPixelColor(Path);
+			System.out.println(imageTools.a);
+			System.out.println(imageTools.r);
+			System.out.println(imageTools.g);
+			System.out.println(imageTools.b);
+			System.out.println(imageTools.p);
         } else {
             l.setText("the user cancelled the operation");
         }
@@ -48,7 +55,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 //	public static int Red;
 //	public static int Green;
 //	public static int Blue;
-	public String Path;
+	public static String Path;
 
 	private static String Hexadecimal(int r, int g, int b, int output) {
 
