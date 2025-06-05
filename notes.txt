@@ -1,1 +1,5 @@
 For the images stuff, check out photography histograms -- apparently they are very useful.
+
+
+Look at this link for getting color data:
+https://stackoverflow.com/questions/6444869/how-do-i-read-pixels-from-a-png-file
