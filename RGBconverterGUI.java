@@ -199,7 +199,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		contentpane.add(GreenLabel);
 		contentpane.add(BlueLabel);
 
-		String[] items = { "0", "255};
+		String[] items = { "0", "255"};
 
 		RedInput = new JComboBox(items);
 
