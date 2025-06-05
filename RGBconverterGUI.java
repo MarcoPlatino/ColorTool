@@ -182,7 +182,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	}
 
 	public RGBconverterGUI() {
-		frame = new JFrame("RGBconverterGUI");
+		frame = new JFrame("Color Tools");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		contentpane = new JPanel();
