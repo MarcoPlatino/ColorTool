@@ -262,8 +262,9 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		String eventName = event.getActionCommand();
-
-		String redString = (String) RedInput.getSelectedItem();
+		
+		if (eventName.equals("Convert")) {
+			String redString = (String) RedInput.getSelectedItem();
 		String greenString = (String) GreenInput.getSelectedItem();
 		String blueString = (String) BlueInput.getSelectedItem();
 
@@ -274,6 +275,8 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		HexadecimalLabel.setText("Hexadecimal code: " + Hexadecimal(Red, Green, Blue, 1));
 		BrightnessLabel.setText("Brightness: " + Hexadecimal(Red, Green, Blue, 2) + "%");
 		ASCIILabel.setText("ASCII code: " + Hexadecimal(Red, Green, Blue, 3));
+		}
+		
 
 
 	}
