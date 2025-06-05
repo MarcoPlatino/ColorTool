@@ -186,7 +186,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		contentpane.add(GreenLabel);
 		contentpane.add(BlueLabel);
 
-		String[] items = { "1", "2", "3" };
+		String[] items = { "0", "255"};
 
 		RedInput = new JComboBox(items);
 
@@ -243,6 +243,8 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		mainPanel.add(imageUpload);
 
 		frame.setContentPane(mainPanel);
+
+		contentpane.setPreferredSize(new Dimension(750, 100));
 		
 		frame.pack();
 		frame.setVisible(true);
