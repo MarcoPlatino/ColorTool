@@ -23,7 +23,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 			l.setText(Path);
 
 			getAverage.setText("Get average color of the file");
-
+			refresh.setText("Data is not updated");
 			//imageTools.getPixelColor(Path);  CHECk This Later !!!!!
 // 			System.out.println(imageTools.a);
 // 			System.out.println(imageTools.r);
@@ -53,6 +53,8 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	JLabel averageR;
 	JLabel averageG;
 	JLabel averageB;
+
+	JLabel refresh;
 
 	JButton ConvertButton;
 	JButton getAverage;
@@ -197,7 +199,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	public RGBconverterGUI() {
 		frame = new JFrame("RGBconverterGUI");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(750, 250));
+		frame.setPreferredSize(new Dimension(1000, 250));
 
 		contentpane = new JPanel();
 		contentpane.setLayout(new GridLayout(4, 4));
@@ -286,6 +288,9 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		getAverage.addActionListener(this);
 		imageColorAverages.add(getAverage);
 
+		refresh = new JLabel("No Data");
+		imageColorAverages.add(refresh);
+
 		l = new JLabel("No file Selected");
 		l.setAlignmentX(CENTER_ALIGNMENT);
 		fileStuff.add(l);
@@ -343,11 +348,12 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		}
 
 		if (eventName.equals("getInfo")){
-			imageTools.getPixelColorAverage(Path);
+			imageTools.getPixelColorAverage(Path); //Updating all the color values
 			averageR.setText("" + imageTools.averageR);
 			averageG.setText("" + imageTools.averageG);			
 			averageB.setText("" + imageTools.averageB);
 
+			refresh.setText("Data is up to date"); //Changing the up to date message
 		}
 
 		
