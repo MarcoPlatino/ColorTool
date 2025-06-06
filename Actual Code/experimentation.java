@@ -19,5 +19,3 @@ public class experimentation{
         System.out.println(imageTools.averageB);
     }
     }
-    }
-}
