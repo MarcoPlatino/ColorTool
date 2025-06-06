@@ -20,12 +20,15 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
         if (r == JFileChooser.APPROVE_OPTION) {
             Path = j.getSelectedFile().getAbsolutePath();
 			l.setText(Path);
+
+			getAverage.setText("Get average color of the file");
+
 			//imageTools.getPixelColor(Path);  CHECk This Later !!!!!
-			System.out.println(imageTools.a);
-			System.out.println(imageTools.r);
-			System.out.println(imageTools.g);
-			System.out.println(imageTools.b);
-//			System.out.println(imageTools.p);
+// 			System.out.println(imageTools.a);
+// 			System.out.println(imageTools.r);
+// 			System.out.println(imageTools.g);
+// 			System.out.println(imageTools.b);
+// //			System.out.println(imageTools.p);
         } else {
             l.setText("the user cancelled the operation");
         }
@@ -35,6 +38,8 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	JFrame frame;
 	JPanel contentpane;
 	JPanel imageUpload;
+	JPanel fileStuff;
+	JPanel imageColorAverages;
 
 	JLabel RedLabel;
 	JLabel GreenLabel;
@@ -44,7 +49,12 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	JLabel BrightnessLabel;
 	JLabel ASCIILabel;
 
+	JLabel averageR;
+	JLabel averageG;
+	JLabel averageB;
+
 	JButton ConvertButton;
+	JButton getAverage;
 
 	JComboBox RedInput;
 	JComboBox GreenInput;
@@ -191,7 +201,14 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		contentpane.setLayout(new GridLayout(4, 4));
 
 		imageUpload = new JPanel();
-		imageUpload.setLayout(new BoxLayout(imageUpload, BoxLayout.Y_AXIS));
+		imageUpload.setLayout(new BoxLayout(imageUpload, BoxLayout.X_AXIS));
+
+		fileStuff = new JPanel();
+		fileStuff.setLayout(new BoxLayout(fileStuff, BoxLayout.Y_AXIS));
+		
+		imageColorAverages = new JPanel();
+		imageColorAverages.setLayout(new GridLayout(0,2));
+
 
 		RedLabel = new JLabel("Red value:");
 		GreenLabel = new JLabel("Green value:");
@@ -239,23 +256,38 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		ASCIILabel = new JLabel("");
 		contentpane.add(ASCIILabel);
 
-		// this is the part of the code where all the file selection stuff is set up!
-		// @TODO maybe all of the image analysis stuff can be added into a new class because it would make it MUCH simpler !!! 
-
+		
 		JButton open = new JButton("open");
 
 		filechooser f1 = new filechooser();
 
 		open.addActionListener(f1);
 		open.setAlignmentX(CENTER_ALIGNMENT);
-		imageUpload.add(open);
+		fileStuff.add(open);
 
-		imageUpload.add(Box.createVerticalGlue());
+		imageColorAverages.add(Box.createVerticalGlue());
+		
+		averageR = new JLabel();
+		imageColorAverages.add(averageR);
+		averageB = new JLabel();
+		imageColorAverages.add(averageB);
+		averageG = new JLabel();
+		imageUpload.add(averageG);
+
+		getAverage = new JButton("No file selected yet");
+		getAverage.setActionCommand("getInfo");
+		getAverage.addActionListener(this);
+		imageColorAverages.add(getAverage);
 
 		l = new JLabel("No file Selected");
 		l.setAlignmentX(CENTER_ALIGNMENT);
-		imageUpload.add(l);
-		
+		fileStuff.add(l);
+		// this is all of the stuff that has to do with the various JPanels... 
+		// There is a lot of different stuff, because everything has to have a different layout and whatnot
+		// Eventually what could be nice would be to add an organization chart, so that everything is understandable to other users
+		imageUpload.add(fileStuff);
+		imageUpload.add(imageColorAverages);
+
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		mainPanel.add(contentpane);
@@ -264,7 +296,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		frame.setContentPane(mainPanel);
 		
 		contentpane.setPreferredSize(new Dimension(750, 100));
-		
+
 		frame.pack();
 		frame.setVisible(true);
 
@@ -299,6 +331,8 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 			HexadecimalLabel.setForeground(TEXTCOLOR);
 			ASCIILabel.setForeground(TEXTCOLOR);
 		}
+
+		
 		
 
 
