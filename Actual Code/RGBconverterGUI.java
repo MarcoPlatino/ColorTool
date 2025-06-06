@@ -197,6 +197,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	public RGBconverterGUI() {
 		frame = new JFrame("RGBconverterGUI");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setPreferredSize(new Dimension(750, 250));
 
 		contentpane = new JPanel();
 		contentpane.setLayout(new GridLayout(4, 4));
@@ -208,7 +209,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		fileStuff.setLayout(new BoxLayout(fileStuff, BoxLayout.Y_AXIS));
 		
 		imageColorAverages = new JPanel();
-		imageColorAverages.setLayout(new GridLayout(2, 3));
+		imageColorAverages.setLayout(new GridLayout(3, 3));
 
 
 		RedLabel = new JLabel("Red value:");
@@ -273,10 +274,11 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		averageB = new JLabel("B");
 
 		imageColorAverages.add(new JLabel("Average R:"));
-		imageColorAverages.add(averageR);
 		imageColorAverages.add(new JLabel("Average G:"));
-		imageColorAverages.add(averageG);
 		imageColorAverages.add(new JLabel("Average B:"));
+
+		imageColorAverages.add(averageR);
+		imageColorAverages.add(averageG);
 		imageColorAverages.add(averageB);
 
 		getAverage = new JButton("No file selected yet");
@@ -293,8 +295,9 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		// This might not be a useful comment anymore!
 		// For now it doesn't matter though 
 		imageUpload.add(fileStuff);
+		imageUpload.add(Box.createHorizontalGlue());
 		imageUpload.add(imageColorAverages);
-
+		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		mainPanel.add(contentpane);
@@ -348,9 +351,6 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		}
 
 		
-		
-
-
 	}
 
 	private static void runRGBconverterGUI() {
