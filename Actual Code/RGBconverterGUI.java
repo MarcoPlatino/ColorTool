@@ -18,11 +18,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
         if (r == JFileChooser.APPROVE_OPTION) {
             Path = j.getSelectedFile().getAbsolutePath();
 			l.setText(Path);
-			imageTools.getPixelColor(Path);
-			A.setText("Transparency: " + imageTools.a);
-			R.setText("Red: " + imageTools.r);
-			G.setText("Green: " + imageTools.g);			
-			B.setText("Blue: " + imageTools.b);			
+			pichure.setIcon(new ImageIcon(Path));
 
 //			System.out.println(imageTools.b);
 //			System.out.println(imageTools.p);
@@ -43,7 +39,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	JLabel G;
 	JLabel B;
 	JLabel A;
-
+	JLabel pichure;
 	JLabel HexadecimalLabel;
 	JLabel BrightnessLabel;
 	JLabel ASCIILabel;
@@ -182,7 +178,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	}
 
 	public RGBconverterGUI() {
-		frame = new JFrame("Color Tools");
+		frame = new JFrame("RGBconverterGUI");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		contentpane = new JPanel();
@@ -260,6 +256,10 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		imageUpload.add(G);
 		imageUpload.add(B);
 
+		
+		pichure = new JLabel(new ImageIcon());
+		pichure.setAlignmentX(CENTER_ALIGNMENT);
+		imageUpload.add(pichure);
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
