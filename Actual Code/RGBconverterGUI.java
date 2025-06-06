@@ -19,12 +19,14 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
         if (r == JFileChooser.APPROVE_OPTION) {
             Path = j.getSelectedFile().getAbsolutePath();
-			l.setText(Path);
-			imageTools.getPixelColor(Path);
-			System.out.println(imageTools.a);
-			System.out.println(imageTools.r);
-			System.out.println(imageTools.g);
-			System.out.println(imageTools.b);
+	   	 l.setText(Path);
+		 pichure.setIcon(new ImageIcon(Path));
+			
+			//imageTools.getPixelColor(Path);
+			//System.out.println(imageTools.a);
+			//System.out.println(imageTools.r);
+			//System.out.println(imageTools.g);
+			//System.out.println(imageTools.b);
 //			System.out.println(imageTools.p);
         } else {
             l.setText("the user cancelled the operation");
@@ -39,6 +41,11 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	JLabel RedLabel;
 	JLabel GreenLabel;
 	JLabel BlueLabel;
+	JLabel R;
+	JLabel G;
+	JLabel B;
+	JLabel A;
+	JLabel pichure;
 
 	JLabel HexadecimalLabel;
 	JLabel BrightnessLabel;
@@ -238,7 +245,21 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
 		ASCIILabel = new JLabel("");
 		contentpane.add(ASCIILabel);
+		//		
+//		R = new JLabel("nothing yet");
+//		G = new JLabel("nothing yet");
+//		B = new JLabel("nothing yet");
+//		A = new JLabel("Nothing yet");
+//		
+//		imageUpload.add(A);
+//		imageUpload.add(R);
+//		imageUpload.add(G);
+//		imageUpload.add(B);
 
+
+		pichure = new JLabel(new ImageIcon());
+		pichure.setAlignmentX(CENTER_ALIGNMENT);
+		imageUpload.add(pichure);
 		// this is the part of the code where all the file selection stuff is set up!
 		// @TODO maybe all of the image analysis stuff can be added into a new class because it would make it MUCH simpler !!! 
 
@@ -298,7 +319,22 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 			BrightnessLabel.setForeground(TEXTCOLOR);
 			HexadecimalLabel.setForeground(TEXTCOLOR);
 			ASCIILabel.setForeground(TEXTCOLOR);
+
+			
+		String redString = (String) RedInput.getSelectedItem();
+		String greenString = (String) GreenInput.getSelectedItem();
+		String blueString = (String) BlueInput.getSelectedItem();
+
+		int Red = Integer.parseInt(redString);
+		int Green = Integer.parseInt(greenString);
+		int Blue = Integer.parseInt(blueString);
+
+		HexadecimalLabel.setText("Hexadecimal code: " + Hexadecimal(Red, Green, Blue, 1));
+		BrightnessLabel.setText("Brightness: " + Hexadecimal(Red, Green, Blue, 2) + "%");
+		ASCIILabel.setText("ASCII code: " + Hexadecimal(Red, Green, Blue, 3));
 		}
+
+		
 		
 
 
