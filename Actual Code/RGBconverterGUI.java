@@ -12,7 +12,7 @@ import javax.swing.*;
 
 public class RGBconverterGUI extends JFrame implements ActionListener {
 	
-	class filechooser implements ActionListener {
+	public class filechooser implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -197,6 +197,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	public RGBconverterGUI() {
 		frame = new JFrame("RGBconverterGUI");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setPreferredSize(new Dimension(750, 250));
 
 		contentpane = new JPanel();
 		contentpane.setLayout(new GridLayout(4, 4));
@@ -208,7 +209,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		fileStuff.setLayout(new BoxLayout(fileStuff, BoxLayout.Y_AXIS));
 		
 		imageColorAverages = new JPanel();
-		imageColorAverages.setLayout(new GridLayout(0,2));
+		imageColorAverages.setLayout(new GridLayout(3, 3));
 
 
 		RedLabel = new JLabel("Red value:");
@@ -266,14 +267,19 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		open.setAlignmentX(CENTER_ALIGNMENT);
 		fileStuff.add(open);
 
-		imageColorAverages.add(Box.createVerticalGlue());
+		// imageColorAverages.add(Box.createVerticalGlue());
 		
-		averageR = new JLabel();
+		averageR = new JLabel("R");
+		averageG = new JLabel("G");
+		averageB = new JLabel("B");
+
+		imageColorAverages.add(new JLabel("Average R:"));
+		imageColorAverages.add(new JLabel("Average G:"));
+		imageColorAverages.add(new JLabel("Average B:"));
+
 		imageColorAverages.add(averageR);
-		averageB = new JLabel();
+		imageColorAverages.add(averageG);
 		imageColorAverages.add(averageB);
-		averageG = new JLabel();
-		imageUpload.add(averageG);
 
 		getAverage = new JButton("No file selected yet");
 		getAverage.setActionCommand("getInfo");
@@ -286,9 +292,12 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		// this is all of the stuff that has to do with the various JPanels... 
 		// There is a lot of different stuff, because everything has to have a different layout and whatnot
 		// Eventually what could be nice would be to add an organization chart, so that everything is understandable to other users
+		// This might not be a useful comment anymore!
+		// For now it doesn't matter though 
 		imageUpload.add(fileStuff);
+		imageUpload.add(Box.createHorizontalGlue());
 		imageUpload.add(imageColorAverages);
-
+		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		mainPanel.add(contentpane);
@@ -333,10 +342,15 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 			ASCIILabel.setForeground(TEXTCOLOR);
 		}
 
-		
-		
+		if (eventName.equals("getInfo")){
+			imageTools.getPixelColorAverage(Path);
+			averageR.setText("" + imageTools.averageR);
+			averageG.setText("" + imageTools.averageG);			
+			averageB.setText("" + imageTools.averageB);
 
+		}
 
+		
 	}
 
 	private static void runRGBconverterGUI() {
