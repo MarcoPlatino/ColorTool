@@ -20,7 +20,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
         if (r == JFileChooser.APPROVE_OPTION) {
             Path = j.getSelectedFile().getAbsolutePath();
 			l.setText(Path);
-			imageTools.getPixelColor(Path);
+			//imageTools.getPixelColor(Path);  CHECk This Later !!!!!
 			System.out.println(imageTools.a);
 			System.out.println(imageTools.r);
 			System.out.println(imageTools.g);

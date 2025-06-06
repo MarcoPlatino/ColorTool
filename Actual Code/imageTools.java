@@ -63,32 +63,48 @@ public class imageTools {
 		int width = img.getWidth();
 		int height = img.getHeight();
 		
-		int[] R;
-		int[] G;
-		int[] B;
-		
+		List<Integer> R;
+		List<Integer> B;
+		List<Integer> G;
+
+		R = new ArrayList<>();
+		G = new ArrayList<>();
+		B = new ArrayList<>();
+
 		for(int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				p = img.getRGB(i, j);
-				// get alpha
-
-
-				// get red
+				
+				//Get 
 				R.add((p >> 16) & 0xff);
 
 				// get green
-				g = (p >> 8) & 0xff;
+				G.add((p >> 8) & 0xff);
 
 				// get blue
-				b = p & 0xff;
+				B.add((p & 0xff));
 				
 			}
 		}
+
+		int totalR = 0;
+		int totalG = 0;
+		int totalB = 0;
+
+		for (int traverseR = 0; traverseR < R.size(); traverseR ++){
+			totalR += R.get(traverseR);
+		}
 		
-		
-		
-		
-		
-		
+		for (int traverseG = 0; traverseG < G.size(); traverseG ++){
+			totalG += G.get(traverseG);
+		}
+
+		for (int traverseB = 0; traverseB < B.size(); traverseB ++){
+			totalB += B.get(traverseB);
+		}
+
+		averageR = totalR / R.size();
+		averageG = totalG / G.size();
+		averageB = totalB / B.size();
 	}
 }
