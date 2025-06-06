@@ -9,6 +9,7 @@ import javax.swing.filechooser.*;
 import javax.swing.*;
 
 
+
 public class RGBconverterGUI extends JFrame implements ActionListener {
 	
 	class filechooser implements ActionListener {
