@@ -1,5 +1,3 @@
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,11 +18,9 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
         if (r == JFileChooser.APPROVE_OPTION) {
             Path = j.getSelectedFile().getAbsolutePath();
 			l.setText(Path);
-			imageTools.getPixelColor(Path);
-			System.out.println(imageTools.a);
-			System.out.println(imageTools.r);
-			System.out.println(imageTools.g);
-			System.out.println(imageTools.b);
+			pichure.setIcon(new ImageIcon(Path));
+
+//			System.out.println(imageTools.b);
 //			System.out.println(imageTools.p);
         } else {
             l.setText("the user cancelled the operation");
@@ -39,7 +35,11 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	JLabel RedLabel;
 	JLabel GreenLabel;
 	JLabel BlueLabel;
-
+	JLabel R;
+	JLabel G;
+	JLabel B;
+	JLabel A;
+	JLabel pichure;
 	JLabel HexadecimalLabel;
 	JLabel BrightnessLabel;
 	JLabel ASCIILabel;
@@ -54,10 +54,10 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
 
 
-
+//	public static int Red;
+//	public static int Green;
+//	public static int Blue;
 	public static String Path;
-	
-	public static Color TEXTCOLOR = Color.BLACK;
 
 	private static String Hexadecimal(int r, int g, int b, int output) {
 
@@ -164,13 +164,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
 		double avg = (smallR + smallG + smallB) / 3.0;
 		double brightness = (avg * 100);
-		
-		if (brightness > 50) {
-			TEXTCOLOR = Color.BLACK;
-		} else {
-			TEXTCOLOR = Color.WHITE;
-		}
-		
+
 		if (output == 1) {
 			return (firstR + "" + letterR + "" + firstG + "" + letterG + "" + firstB + "" + letterB);
 		} else if (output == 2) {
@@ -196,10 +190,6 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		RedLabel = new JLabel("Red value:");
 		GreenLabel = new JLabel("Green value:");
 		BlueLabel = new JLabel("Blue value:");
-		
-		RedLabel.setForeground(TEXTCOLOR);
-		GreenLabel.setForeground(TEXTCOLOR);
-		BlueLabel.setForeground(TEXTCOLOR);
 
 		contentpane.add(RedLabel);
 		contentpane.add(GreenLabel);
@@ -255,6 +245,21 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		l = new JLabel("No file Selected");
 		l.setAlignmentX(CENTER_ALIGNMENT);
 		imageUpload.add(l);
+//		
+//		R = new JLabel("nothing yet");
+//		G = new JLabel("nothing yet");
+//		B = new JLabel("nothing yet");
+//		A = new JLabel("Nothing yet");
+//		
+//		imageUpload.add(A);
+//		imageUpload.add(R);
+//		imageUpload.add(G);
+//		imageUpload.add(B);
+
+		
+		pichure = new JLabel(new ImageIcon());
+		pichure.setAlignmentX(CENTER_ALIGNMENT);
+		imageUpload.add(pichure);
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -262,8 +267,6 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		mainPanel.add(imageUpload);
 
 		frame.setContentPane(mainPanel);
-		
-		contentpane.setPreferredSize(new Dimension(750, 100));
 		
 		frame.pack();
 		frame.setVisible(true);
@@ -273,33 +276,18 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		String eventName = event.getActionCommand();
-		
-		if (eventName.equals("Convert")) {
-			String redString = (String) RedInput.getSelectedItem();
-			String greenString = (String) GreenInput.getSelectedItem();
-			String blueString = (String) BlueInput.getSelectedItem();
-			
-			
-			
-			int Red = Integer.parseInt(redString);
-			int Green = Integer.parseInt(greenString);
-			int Blue = Integer.parseInt(blueString);
-			
-			contentpane.setBackground(new Color(Red, Green, Blue));
-			
-			HexadecimalLabel.setText("Hexadecimal code: " + Hexadecimal(Red, Green, Blue, 1));
-			BrightnessLabel.setText("Brightness: " + Hexadecimal(Red, Green, Blue, 2) + "%");
-			ASCIILabel.setText("ASCII code: " + Hexadecimal(Red, Green, Blue, 3));
-			
-			RedLabel.setForeground(TEXTCOLOR);
-			GreenLabel.setForeground(TEXTCOLOR);
-			BlueLabel.setForeground(TEXTCOLOR);
-			
-			BrightnessLabel.setForeground(TEXTCOLOR);
-			HexadecimalLabel.setForeground(TEXTCOLOR);
-			ASCIILabel.setForeground(TEXTCOLOR);
-		}
-		
+
+		String redString = (String) RedInput.getSelectedItem();
+		String greenString = (String) GreenInput.getSelectedItem();
+		String blueString = (String) BlueInput.getSelectedItem();
+
+		int Red = Integer.parseInt(redString);
+		int Green = Integer.parseInt(greenString);
+		int Blue = Integer.parseInt(blueString);
+
+		HexadecimalLabel.setText("Hexadecimal code: " + Hexadecimal(Red, Green, Blue, 1));
+		BrightnessLabel.setText("Brightness: " + Hexadecimal(Red, Green, Blue, 2) + "%");
+		ASCIILabel.setText("ASCII code: " + Hexadecimal(Red, Green, Blue, 3));
 
 
 	}
