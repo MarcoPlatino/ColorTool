@@ -15,6 +15,7 @@ public class graphMaker extends JFrame {
     public graphMaker(List<Integer> data) {
         this.data = data;
         this.setPreferredSize(new Dimension(255, 400));
+        this.setTitle("Brightness Histogram");
         this.pack();
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -35,6 +36,9 @@ public class graphMaker extends JFrame {
         super.paint(g);
 
         if (data == null || data.isEmpty()) return;
+
+        // g.setColor(Color.ORANGE);        
+
         int height = getHeight();
         int width = getWidth();
         int bins = 256;
@@ -54,7 +58,8 @@ public class graphMaker extends JFrame {
             int x = i * width / bins;
             int barHeight = (int)((histogram[i] / (double)maxCount) * (height - 20));
             int y = height - 10 - barHeight;
-            g.drawLine(x, y, x, y);
+            // g.drawLine(x, y, x, y);
+            g.fillRect(x, y, 2, height-y);
         }
         
             }
