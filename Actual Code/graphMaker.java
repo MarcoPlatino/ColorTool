@@ -14,7 +14,7 @@ public class graphMaker extends JFrame {
 
     public graphMaker(List<Integer> data) {
         this.data = data;
-        this.setPreferredSize(new Dimension(255, 400));
+        this.setPreferredSize(new Dimension(510, 400));
         this.setTitle("Brightness Histogram");
         this.pack();
         this.setVisible(true);
@@ -59,13 +59,17 @@ public class graphMaker extends JFrame {
             int barHeight = (int)((histogram[i] / (double)maxCount) * (height - 20));
             int y = height - 10 - barHeight;
             // g.drawLine(x, y, x, y);
-            g.fillRect(x, y, 2, height-y);
+            g.fillRect(x, y, 4, height-y);
         }
         
             }
 
     public static void main(String[] args) {
-        List<Integer> sampleData = Arrays.asList(10, 50, 100, 200, 350, 390);
+        //In here are a few demo, so when you run just this file you can see some examples
+        List<Integer> sampleData = imageTools.getBrightness("/media/marco/PRINTING/Pictures/Overexposure.jpg");
         new graphMaker(sampleData);
+        List<Integer> sampleData2 = imageTools.getBrightness("/media/marco/PRINTING/Pictures/Overexposure.jpg");
+        new graphMaker(sampleData2);
+
     }
 }

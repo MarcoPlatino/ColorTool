@@ -120,4 +120,38 @@ public class imageTools {
 		averageG = totalG / G.size();
 		averageB = totalB / B.size();
 	}
+
+	public static List<Integer> getBrightness(String Path){
+		BufferedImage img = null;
+		File f = null;
+		
+		try {
+			f = new File(Path);
+			img = ImageIO.read(f);
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+
+		List<Integer> bright;
+		bright = new ArrayList<>();
+		
+		int width = img.getWidth();
+		int height = img.getHeight();
+		
+		for(int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				p = img.getRGB(i, j);
+
+				a = (p >> 24) & 0xff;
+				r = (p >> 16) & 0xff;
+				g = (p >> 8) & 0xff;
+				b = p & 0xff;
+
+				int brightness = (int)((0.299*r + 0.587*g + 0.114*b));
+				bright.add(brightness);
+			}
+		}
+
+		return bright;
+	}
 }
