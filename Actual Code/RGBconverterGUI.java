@@ -58,6 +58,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
 	JButton ConvertButton;
 	JButton getAverage;
+	JButton makeHistogram;
 
 	JComboBox RedInput;
 	JComboBox GreenInput;
@@ -291,6 +292,11 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		refresh = new JLabel("No Data");
 		imageColorAverages.add(refresh);
 
+		makeHistogram = new JButton("Make Histogram");
+		makeHistogram.setActionCommand("histogram");
+		makeHistogram.addActionListener(this);
+		imageColorAverages.add(makeHistogram);
+
 		l = new JLabel("No file Selected");
 		l.setAlignmentX(CENTER_ALIGNMENT);
 		fileStuff.add(l);
@@ -356,6 +362,10 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
 			refresh.setText("Data is up to date"); //Changing the up to date message
 
+		}
+		
+		if (eventName.equals("histogram")){
+			imageTools.getPixelColorAverage(Path);
 			new graphMaker(imageTools.Brightness);
 		}
 
