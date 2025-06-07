@@ -352,8 +352,11 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 			averageR.setText("" + imageTools.averageR);
 			averageG.setText("" + imageTools.averageG);			
 			averageB.setText("" + imageTools.averageB);
+			System.out.println(imageTools.Brightness);
 
 			refresh.setText("Data is up to date"); //Changing the up to date message
+
+			new graphMaker(imageTools.Brightness);
 		}
 
 		
