@@ -15,7 +15,7 @@ public class graphMaker extends JFrame {
     public graphMaker(List<Integer> data) {
         this.data = data;
         this.setPreferredSize(new Dimension(510, 400));
-        this.setTitle("Brightness Histogram");
+        this.setTitle(RGBconverterGUI.Path);
         this.pack();
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -66,10 +66,14 @@ public class graphMaker extends JFrame {
 
     public static void main(String[] args) {
         //In here are a few demo, so when you run just this file you can see some examples
-        List<Integer> sampleData = imageTools.getBrightness("/media/marco/PRINTING/Pictures/Overexposure.jpg");
+        //You will definetely have to change the paths, but for now it is fine
+        List<Integer> sampleData = imageTools.getBrightness("/media/marco/PRINTING/ColorTool/ExampleColors/Correct-Exposure.jpg");
         new graphMaker(sampleData);
-        List<Integer> sampleData2 = imageTools.getBrightness("/media/marco/PRINTING/Pictures/Overexposure.jpg");
+        List<Integer> sampleData2 = imageTools.getBrightness("/media/marco/PRINTING/ColorTool/ExampleColors/Overexposure.jpg");
         new graphMaker(sampleData2);
+        List<Integer> sampleData3 = imageTools.getBrightness("/media/marco/PRINTING/ColorTool/ExampleColors/Underexposure.jpg");
+        new graphMaker(sampleData3);
+
 
     }
 }
