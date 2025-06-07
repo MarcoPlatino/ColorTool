@@ -6,3 +6,5 @@ https://stackoverflow.com/questions/6444869/how-do-i-read-pixels-from-a-png-file
 
 Also this:
 https://www.geeksforgeeks.org/image-processing-in-java-get-and-set-pixels/
+
+https://dev.to/sh0nk/how-to-draw-beautiful-chart-like-matplotlib-in-java-or-scala-587j
