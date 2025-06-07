@@ -16,6 +16,12 @@ public class imageTools {
 	public static int averageR;
 	public static int averageG;
 	public static int averageB;
+
+	public static List<Integer> R;
+	public static List<Integer> B;
+	public static List<Integer> G;
+	public static List<Integer> Brightness;
+	
 	
 	public static void getPixelColor(String Path, int x, int y) {
 		BufferedImage img = null;
@@ -63,26 +69,33 @@ public class imageTools {
 		int width = img.getWidth();
 		int height = img.getHeight();
 		
-		List<Integer> R;
-		List<Integer> B;
-		List<Integer> G;
 
 		R = new ArrayList<>();
 		G = new ArrayList<>();
 		B = new ArrayList<>();
+		Brightness = new ArrayList<>();
 
 		for(int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				p = img.getRGB(i, j);
-				
-				//Get 
-				R.add((p >> 16) & 0xff);
+
+				a = (p >> 24) & 0xff;
+				r = (p >> 16) & 0xff;
+				g = (p >> 8) & 0xff;
+				b = p & 0xff;
+
+
+				R.add(r);
 
 				// get green
-				G.add((p >> 8) & 0xff);
+				G.add(g);
 
 				// get blue
-				B.add((p & 0xff));
+				B.add(b);
+
+				// int brightness = (int)(0.299 * r + 0.587 * g + 0.114 * b);
+				int brightness = (int)((0.299*r + 0.587*g + 0.114*b));
+				Brightness.add(brightness);
 				
 			}
 		}
