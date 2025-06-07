@@ -8,3 +8,4 @@ Also this:
 https://www.geeksforgeeks.org/image-processing-in-java-get-and-set-pixels/
 
 https://dev.to/sh0nk/how-to-draw-beautiful-chart-like-matplotlib-in-java-or-scala-587j
+https://reintech.io/blog/java-data-visualization-displaying-data-with-charts-and-graphs
