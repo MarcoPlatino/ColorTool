@@ -58,7 +58,11 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
 	JButton ConvertButton;
 	JButton getAverage;
-	JButton makeHistogram;
+	JButton brightnessHistogram;
+	JButton redHistogram;
+	JButton greenHistogram;
+	JButton blueHistogram;
+
 
 	JComboBox RedInput;
 	JComboBox GreenInput;
@@ -292,10 +296,26 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		refresh = new JLabel("No Data");
 		imageColorAverages.add(refresh);
 
-		makeHistogram = new JButton("Make Histogram");
-		makeHistogram.setActionCommand("histogram");
-		makeHistogram.addActionListener(this);
-		imageColorAverages.add(makeHistogram);
+		brightnessHistogram = new JButton("Brightness Histogram");
+		brightnessHistogram.setActionCommand("brightnessHist");
+		brightnessHistogram.addActionListener(this);
+		imageColorAverages.add(brightnessHistogram);
+
+		redHistogram = new JButton("Red Histogram");
+		redHistogram.setActionCommand("redHist");
+		redHistogram.addActionListener(this);
+		imageColorAverages.add(redHistogram);
+		
+		greenHistogram = new JButton("Green Histogram");
+		greenHistogram.setActionCommand("greenHist");
+		greenHistogram.addActionListener(this);
+		imageColorAverages.add(greenHistogram);
+
+		blueHistogram = new JButton("Blue Histogram");
+		blueHistogram.setActionCommand("blueHist");
+		blueHistogram.addActionListener(this);
+		imageColorAverages.add(blueHistogram);
+
 
 		l = new JLabel("No file Selected");
 		l.setAlignmentX(CENTER_ALIGNMENT);
@@ -364,9 +384,22 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
 		}
 		
-		if (eventName.equals("histogram")){
+		if (eventName.equals("brightnessHist")){
 			imageTools.getPixelColorAverage(Path);
-			new graphMaker(imageTools.Brightness);
+			new colorGraphMaker(imageTools.Brightness, "black");
+		}
+		if (eventName.equals("redHist")){
+			imageTools.getPixelColorAverage(Path);
+			new colorGraphMaker(imageTools.R, "red");
+		}
+		if (eventName.equals("greenHist")){
+			imageTools.getPixelColorAverage(Path);
+			new colorGraphMaker(imageTools.G, "green");
+		}
+
+		if (eventName.equals("blueHist")){
+			imageTools.getPixelColorAverage(Path);
+			new colorGraphMaker(imageTools.B, "blue");
 		}
 
 		
