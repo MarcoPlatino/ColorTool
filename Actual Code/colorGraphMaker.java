@@ -1,20 +1,14 @@
-// call this method by doing this:
-// List<integer> myData = ...;
-// new graphMaker(myData);
-
-
 import javax.swing.JFrame;
 import java.awt.*;
 import java.util.List;
 import java.util.Arrays;
-//The Graphs open in a new window...
 
-public class graphMaker extends JFrame {
+public class colorGraphMaker extends JFrame {
     private List<Integer> data;
-    // private String color;
+    private String color;
 
-    public graphMaker(List<Integer> data) {
-        // this.color = color;
+    public colorGraphMaker(List<Integer> data, String color) {
+        this.color = color;
         this.data = data;
         this.setPreferredSize(new Dimension(510, 400));
         this.setTitle(RGBconverterGUI.Path);
@@ -23,15 +17,6 @@ public class graphMaker extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    // private int[] computeHistogram(List<Integer> data, int binCount){
-    //     int[] histogram = new int[binCount];
-    //     for (int value : data) {
-    //         int bin = (int) ((value / 256.0) * binCount);
-    //         if (bin == binCount) bin = binCount - 1;
-    //         histogram[bin] ++;
-    //     }
-    //     return histogram;
-    // }
 
     @Override
     public void paint(Graphics g) {
@@ -39,12 +24,12 @@ public class graphMaker extends JFrame {
 
         if (data == null || data.isEmpty()) return;
 
-        // switch (color) {
-        //     case "red": g.setColor(Color.RED); break;
-        //     case "green": g.setColor(Color.GREEN); break;
-        //     case "blue": g.setColor(Color.BLUE); break;  
-        //     default: g.setColor(Color.BLACK); break;
-        // }
+        switch (color) {
+            case "red": g.setColor(Color.RED); break;
+            case "green": g.setColor(Color.GREEN); break;
+            case "blue": g.setColor(Color.BLUE); break;  
+            default: g.setColor(Color.BLACK); break;
+        }
 
         int height = getHeight();
         int width = getWidth();
@@ -84,4 +69,3 @@ public class graphMaker extends JFrame {
 
     }
 }
-
