@@ -231,7 +231,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		contentpane.add(GreenLabel);
 		contentpane.add(BlueLabel);
 
-		String[] items = { "0", "255"};
+		String[] items = { "0", "255", ""};
 
 		RedInput = new JComboBox(items);
 
@@ -276,19 +276,15 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
 		// imageColorAverages.add(Box.createVerticalGlue());
 		
-		averageR = new JLabel("R");
-		averageG = new JLabel("G");
-		averageB = new JLabel("B");
-
-		imageColorAverages.add(new JLabel("Average R:"));
-		imageColorAverages.add(new JLabel("Average G:"));
-		imageColorAverages.add(new JLabel("Average B:"));
+		averageR = new JLabel("");
+		averageG = new JLabel("");
+		averageB = new JLabel("");
 
 		imageColorAverages.add(averageR);
 		imageColorAverages.add(averageG);
 		imageColorAverages.add(averageB);
 
-		getAverage = new JButton("No file selected yet");
+		getAverage = new JButton("Get Average");
 		getAverage.setActionCommand("getInfo");
 		getAverage.addActionListener(this);
 		imageColorAverages.add(getAverage);
@@ -375,9 +371,10 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
 		if (eventName.equals("getInfo")){
 			imageTools.getPixelColorAverage(Path); //Updating all the color values
-			averageR.setText("" + imageTools.averageR);
-			averageG.setText("" + imageTools.averageG);			
-			averageB.setText("" + imageTools.averageB);
+			averageR.setText("Average R: " + imageTools.averageR);
+			averageG.setText("Average G: " + imageTools.averageG);
+			averageB.setText("Average B: " + imageTools.averageB);
+			
 			System.out.println(imageTools.Brightness);
 
 			refresh.setText("Data is up to date"); //Changing the up to date message
