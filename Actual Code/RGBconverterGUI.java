@@ -48,6 +48,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
 	JLabel HexadecimalLabel;
 	JLabel BrightnessLabel;
+	JLabel pBrightnessLabel;
 	JLabel ASCIILabel;
 
 	JLabel averageR;
@@ -70,6 +71,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
 	static JLabel l;
 
+	public static int pBrightness = 0;
 
 
 
@@ -183,7 +185,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		double avg = (smallR + smallG + smallB) / 3.0;
 		double brightness = (avg * 100);
 		
-		if (brightness > 50) {
+		if (pBrightness > 50) {
 			TEXTCOLOR = Color.BLACK;
 		} else {
 			TEXTCOLOR = Color.WHITE;
@@ -261,6 +263,9 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 
 		BrightnessLabel = new JLabel("");
 		contentpane.add(BrightnessLabel);
+		
+		pBrightnessLabel = new JLabel("");
+		contentpane.add(pBrightnessLabel);
 
 		ASCIILabel = new JLabel("");
 		contentpane.add(ASCIILabel);
@@ -300,27 +305,29 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 		redHistogram = new JButton("Red Histogram");
 		redHistogram.setActionCommand("redHist");
 		redHistogram.addActionListener(this);
+		redHistogram.setBackground(Color.RED);
+		redHistogram.setForeground(Color.WHITE);
 		imageColorAverages.add(redHistogram);
 		
 		greenHistogram = new JButton("Green Histogram");
 		greenHistogram.setActionCommand("greenHist");
 		greenHistogram.addActionListener(this);
+		greenHistogram.setBackground(Color.GREEN);
+		greenHistogram.setForeground(Color.WHITE);
 		imageColorAverages.add(greenHistogram);
 
 		blueHistogram = new JButton("Blue Histogram");
 		blueHistogram.setActionCommand("blueHist");
 		blueHistogram.addActionListener(this);
+		blueHistogram.setBackground(Color.BLUE);
+		blueHistogram.setForeground(Color.WHITE);
 		imageColorAverages.add(blueHistogram);
 
 
 		l = new JLabel("No file Selected");
 		l.setAlignmentX(CENTER_ALIGNMENT);
 		fileStuff.add(l);
-		// this is all of the stuff that has to do with the various JPanels... 
-		// There is a lot of different stuff, because everything has to have a different layout and whatnot
-		// Eventually what could be nice would be to add an organization chart, so that everything is understandable to other users
-		// This might not be a useful comment anymore!
-		// For now it doesn't matter though 
+
 		imageUpload.add(fileStuff);
 		imageUpload.add(Box.createHorizontalGlue());
 		imageUpload.add(imageColorAverages);
@@ -348,22 +355,26 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 			String greenString = (String) GreenInput.getSelectedItem();
 			String blueString = (String) BlueInput.getSelectedItem();
 			
-			
-			
 			int Red = Integer.parseInt(redString);
 			int Green = Integer.parseInt(greenString);
 			int Blue = Integer.parseInt(blueString);
+			
+			
+			pBrightness = (int)((0.299*Red + 0.587*Green + 0.114*Blue));
 			
 			contentpane.setBackground(new Color(Red, Green, Blue));
 			
 			HexadecimalLabel.setText("Hexadecimal code: " + Hexadecimal(Red, Green, Blue, 1));
 			BrightnessLabel.setText("Brightness: " + Hexadecimal(Red, Green, Blue, 2) + "%");
+			pBrightnessLabel.setText("Percieved brightness: " + pBrightness);
 			ASCIILabel.setText("ASCII code: " + Hexadecimal(Red, Green, Blue, 3));
+			
 			
 			RedLabel.setForeground(TEXTCOLOR);
 			GreenLabel.setForeground(TEXTCOLOR);
 			BlueLabel.setForeground(TEXTCOLOR);
 			
+			pBrightnessLabel.setForeground(TEXTCOLOR);
 			BrightnessLabel.setForeground(TEXTCOLOR);
 			HexadecimalLabel.setForeground(TEXTCOLOR);
 			ASCIILabel.setForeground(TEXTCOLOR);
@@ -374,7 +385,8 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 			averageR.setText("Average R: " + imageTools.averageR);
 			averageG.setText("Average G: " + imageTools.averageG);
 			averageB.setText("Average B: " + imageTools.averageB);
-			
+			imageColorAverages.setBackground(new Color(imageTools.averageR, imageTools.averageG, imageTools.averageB));
+
 			System.out.println(imageTools.Brightness);
 
 			refresh.setText("Data is up to date"); //Changing the up to date message
