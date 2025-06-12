@@ -78,6 +78,7 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 	public static String Path;
 	
 	public static Color TEXTCOLOR = Color.BLACK;
+	public static Color TEXTCOLOR1 = Color.BLACK;
 
 	private static String Hexadecimal(int r, int g, int b, int output) {
 
@@ -388,8 +389,19 @@ public class RGBconverterGUI extends JFrame implements ActionListener {
 			imageColorAverages.setBackground(new Color(imageTools.averageR, imageTools.averageG, imageTools.averageB));
 
 			System.out.println(imageTools.Brightness);
+			
+			if ((int)((0.299*imageTools.averageR + 0.587*imageTools.averageG + 0.114*imageTools.averageB)) > 50) {
+				TEXTCOLOR1 = Color.BLACK;
+			} else {
+				TEXTCOLOR1 = Color.WHITE;
+			}
 
 			refresh.setText("Data is up to date"); //Changing the up to date message
+			refresh.setForeground(TEXTCOLOR1);
+			
+			averageR.setForeground(TEXTCOLOR1);
+			averageG.setForeground(TEXTCOLOR1);
+			averageB.setForeground(TEXTCOLOR1);
 
 		}
 		
